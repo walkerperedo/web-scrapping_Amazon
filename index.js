@@ -22,9 +22,17 @@ const path = require("path");
     for (const el of info) {
       infoText.push(el.innerText);
     }
-    console.log(infoText);
 
-    return infoText;
+    return infoText.map((el) => {
+      const info = el.split("\n");
+      return {
+        title: info[0],
+        edition: info[1],
+        stars: info[2],
+        sells: info[3],
+        version: info[4],
+        prices: `${info[5]},${info[6]}`,
+      };
+    });
   });
-  console.log(infoText);
 })();
