@@ -20,7 +20,7 @@ const path = require("path");
     const infoText = [];
 
     for (const el of info) {
-      infoText.push(el);
+      infoText.push(el.innerText);
     }
     console.log(infoText);
 
