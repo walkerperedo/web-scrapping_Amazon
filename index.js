@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer");
 const path = require("path");
+const fs = require("fs");
 
 (async () => {
   const browser = await puppeteer.launch({ headless: false });
@@ -28,11 +29,21 @@ const path = require("path");
       return {
         title: info[0],
         edition: info[1],
-        stars: info[2],
-        sells: info[3],
-        version: info[4],
-        prices: `${info[5]},${info[6]}`,
+        autor: info[2],
+        stars: info[3],
+        sells: info[4],
+        version: `${info[5]},${info[6]}`,
       };
     });
   });
+
+  await page.screenshot({
+    path: path.join(__dirname, `amazon.png`),
+  });
+
+  fs.writeFileSync(
+    path.join(__dirname, `amazon.json`),
+    JSON.stringify(infoText),
+    "utf8"
+  );
 })();
